@@ -1,0 +1,45 @@
+{
+  "name": "web-tool",
+  "version": "1.0.0",
+  "description": "Boilerplate tool for front-end web development",
+  "main": "index.js",
+  "scripts": {
+    "lint": "echo '=> linting' && jshint src/scripts/*.js",
+    "clean": "rimraf ./dist && mkdirp dist/{css,js,assets}",
+    "prebuild": "npm run clean",
+    "build": "npm run html && npm run js && npm run sass && npm run assets",
+    "build:prod": "npm run clean && npm run html & npm run js:minify & npm run sass:minify",
+    "html": "sniplicity -i src/ -o dist/",
+    "js": "browserify src/scripts/main.js --debug | exorcist dist/js/bundle.js.map > dist/js/bundle.js",
+    "js:minify": "browserify src/scripts/main.js | uglifyjs -o dist/js/bundle.js",
+    "sass": "node-sass --source-map=true --source-map-contents=true src/styles/main.scss dist/css/style.css && postcss --use autoprefixer dist/css/style.css -d dist/css/",
+    "sass:minify": "node-sass --output-style compressed src/styles/main.scss dist/css/style.css && postcss --use autoprefixer dist/css/style.css -d dist/css/",
+    "assets": "cp -R src/assets/ dist/assets/",
+    "serve": "npm run build && parallelshell 'npm run watch:js' 'npm run watch:html' 'npm run watch:sass' 'npm run watch:serve'",
+    "serve:prod": "npm run build:prod && npm run watch:serve",
+    "watch:serve": "browser-sync start --server dist/ --files dist/*",
+    "watch:sass": "watch 'npm run sass' src/styles/",
+    "watch:js": "watch 'npm run js' src/scripts/",
+    "watch:html": "watch 'npm run html' src/ --ignoreDirectoryPattern='/src/(scripts|styles)/'"
+  },
+  "author": "Masanori Uehara",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "browser-sync": "^2.14.0",
+    "browserify": "^13.1.0",
+    "exorcist": "^0.4.0",
+    "jshint": "^2.9.3",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^3.8.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.5.2",
+    "rimraf": "^2.5.4",
+    "sniplicity": "^0.1.7",
+    "uglify-js": "^2.7.3",
+    "watch": "^0.19.2"
+  },
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}
