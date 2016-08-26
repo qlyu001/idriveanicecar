@@ -3,4 +3,3 @@ dist
 .tmp
 .DS_Store
 bower_components
-test/bower_components

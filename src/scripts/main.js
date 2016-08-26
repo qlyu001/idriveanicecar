@@ -1,3 +1,1 @@
-var $ = require('jquery');
-
-console.log($);
+console.log("It's working!");
