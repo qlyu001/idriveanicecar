@@ -14,7 +14,7 @@ Super lightweight npm build tool made for frond end web development.
 Be sure to have node and npm installed on your development machine.
 
 ## Installation
-1. Clone the repository: `$ git clone git@github.com:jackchuka/web-tool.git`
+1. Clone the repository: `$ git clone https://github.com/jackchuka/web-tool.git`
 2. Install NPM dependencies: `$ npm install`
 3. Run: `$ npm run serve`
 
