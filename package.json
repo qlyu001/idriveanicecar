@@ -10,7 +10,7 @@
     "prebuild": "npm run clean && npm run setup",
     "build": "npm run html & npm run js & npm run sass & npm run assets",
     "prebuild:prod": "npm run clean && npm run setup",
-    "build:prod": "npm run html & npm run js:minify & npm run sass:minify",
+    "build:prod": "npm run html & npm run js:minify & npm run sass:minify & npm run assets",
     "html": "sniplicity -i src/ -o dist/",
     "js": "browserify src/scripts/main.js --debug | exorcist dist/js/bundle.js.map > dist/js/bundle.js",
     "js:minify": "browserify src/scripts/main.js | uglifyjs -o dist/js/bundle.js",
