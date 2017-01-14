@@ -16,8 +16,16 @@ $('.loginForm').on('submit', function(e) {
         console.log(user.email);
       })
       .catch(function(error) {
-
+        console.log(error);
       });
   }
-  // console.log($('#username').val());
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // maybe redirect page now ?
+    console.log(user);
+  } else {
+    // force user to re-login ?
+  }
 });
