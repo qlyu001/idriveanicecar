@@ -4,7 +4,7 @@
 
 /*** Authentication ***/
 var user = firebase.auth().currentUser;
-var x;
+
 $('.loginForm').on('submit', function(e) {
   e.preventDefault();
   if (user == null)
@@ -14,8 +14,8 @@ $('.loginForm').on('submit', function(e) {
         user = usr;
         console.log("logged in!");
         console.log(user.email);
-        var x = 1;
-        Boolean(x);
+
+        window.location.href = '/dash.html';
 
       })
       .catch(function(error) {
@@ -27,13 +27,7 @@ $('.loginForm').on('submit', function(e) {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // maybe redirect page now ?
-
     console.log(user);
-    if(x){
-      window.location.href = 'dash.html';
-      x = 0;
-      Boolean(x);
-    }
 
   } else {
     // force user to re-login ?
