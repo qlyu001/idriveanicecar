@@ -4,9 +4,7 @@
 
 /*** Authentication ***/
 var user = firebase.auth().currentUser;
-var x = 1;
-Boolean(x);
-
+var x;
 $('.loginForm').on('submit', function(e) {
   e.preventDefault();
   if (user == null)
@@ -16,6 +14,9 @@ $('.loginForm').on('submit', function(e) {
         user = usr;
         console.log("logged in!");
         console.log(user.email);
+        var x = 1;
+        Boolean(x);
+
       })
       .catch(function(error) {
         console.log(error);
