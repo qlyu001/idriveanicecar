@@ -24,6 +24,7 @@ $('.loginForm').on('submit', function(e) {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // maybe redirect page now ?
+    //window.location.href = '/path/dash.html';
     console.log(user);
   } else {
     // force user to re-login ?
