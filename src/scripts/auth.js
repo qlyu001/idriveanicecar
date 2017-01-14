@@ -5,6 +5,12 @@
 /*** Authentication ***/
 var user = firebase.auth().currentUser;
 
+
+$('.loginForm').on('submit', function(e) {
+  e.preventDefault();
+  console.log($('#username').val());
+});
+
 if (user == null)
 {
   console.log("sigin..\n");
