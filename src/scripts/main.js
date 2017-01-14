@@ -8,3 +8,5 @@ require("./firebase-config");
 
 /*** Authentication ***/
 require("./auth");
+
+require("./yourSpot");

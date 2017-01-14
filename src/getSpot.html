@@ -13,20 +13,22 @@
   <!-- include partials/header.html -->
 
 
-
-  <div class="container">
-    <select>
-      <option value="volvo">New York</option>
-      <option value="saab">California</option>
-      <option value="opel">Utah</option>
-      <option value="audi">Riverside</option>
+  <form class="yourSpotForm">
+    <label for="action">Options:</label>
+    <select name="action" id="action">
+      <option value="New York">New York</option>
+      <option value="California">California</option>
+      <option value="Utah">Utah</option>
+      <option value="Riverside">Riverside</option>
     </select>
-    
+    <button type="submit" name="submit" value="submit">Pick the city</button>
+  </form>
+  <script type="text/javascript">
+        $(".yourSpotForm").on('click', function() {
+        alert($(this).val());
+        });
+    </script>
 
-
-
-
-  </div>
 
 
 
