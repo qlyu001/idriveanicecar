@@ -1,6 +1,6 @@
 //Initializes the Realtime Database JavaScript SDK
 var config = {
-    apiKey: "apiKey",
+    apiKey: "AIzaSyAZF0Fr7icVeD8UojoLFxG2fQkXRWkDcEM",
     authDomain: "parking-8581d.firebaseapp.com",
     databaseURL: "https://parking-8581d.firebaseio.com", //Realtime Database URL
     storageBucket: "gs://parking-8581d.appspot.com"
