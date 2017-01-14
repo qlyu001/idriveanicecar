@@ -10,3 +10,5 @@ require("./firebase-config");
 require("./auth");
 
 require("./yourSpot");
+
+require("./register");
