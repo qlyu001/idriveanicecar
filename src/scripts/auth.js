@@ -4,6 +4,8 @@
 
 /*** Authentication ***/
 var user = firebase.auth().currentUser;
+var x = 1;
+Boolean(x);
 
 $('.loginForm').on('submit', function(e) {
   e.preventDefault();
@@ -24,8 +26,14 @@ $('.loginForm').on('submit', function(e) {
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // maybe redirect page now ?
-    //window.location.href = '/path/dash.html';
+
     console.log(user);
+    if(x){
+      window.location.href = 'dash.html';
+      x = 0;
+      Boolean(x);
+    }
+
   } else {
     // force user to re-login ?
   }
