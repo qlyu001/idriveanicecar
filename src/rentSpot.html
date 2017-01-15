@@ -7,8 +7,6 @@
   <title>Document</title>
   <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-</head>
-<body>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,34 +15,60 @@
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 </head>
 <body>
-  <div data-role="page" id="pageone">
-    <div data-role="header">
-      <h1>Welcome To My Homepage</h1>
-      <div data-role="navbar">
-        <ul>
-          <li><a href="http://www.bing.com" target="search_iframe">Bing</a></li>
-          <li><a href="http://en.wikipedia.org" target="search_iframe">Wikipedia</a></li>
-          <li><a href="http://google.com" target="search_iframe">Google</a></li>
-        </ul>
-      </div>
-    </div>
+  <ul class="tab">
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'London')">Pirce</a></li>
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Paris')">License Plate</a></li>
+    <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Tokyo')">Time Range</a></li>
+  </ul>
 
+  <div id="London" class="tabcontent">
 
+    <p><label><b>Submit the price</b></label>
+    <input id="price" type="text" placeholder="Enter the price" name="price" required>
 
+    <button type="submit">Submit</button>
 
-  <iframe src="http://en.wikipedia.org" width="100%" height="100%" name="search_iframe"></iframe>
-
-
-  <div data-role="main" class="ui-content">
-    <p></p>
   </div>
 
-  
-</div>
+  <div id="Paris" class="tabcontent">
+    <p><label><b>Type in your license plate</b></label>
+    <input id="plate" type="text" placeholder="Enter the license plate" name="plate" required>
 
-</body>
-</html>
+    <button type="submit">Submit</button>
 
+  </div>
+
+  <div id="Tokyo" class="tabcontent">
+    <p><label><b>Type in your time range</b></label>
+    <input id="start" type="text" placeholder="Enter the starting time" name="start" required>
+    <input id="end" type="text" placeholder="Enter the ending time" name="end" required>
+
+
+    <button type="submit">Submit</button>
+  </div>
+
+  <script type="text/javascript">
+  function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the link that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+  </script>
 
   <script src="js/bundle.js" charset="utf-8"></script>
 </body>
