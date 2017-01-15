@@ -170,19 +170,19 @@
         ],
         disableDoubleClickZoom: false
       });
-      map.addListener('click', function(e) {
-        firebase.push({
-          lat: e.latLng.lat(),
-          lng: e.latLng.lng()
-        });
-        var marker = new google.maps.Marker({
-          position: {
-            lat: e.latLng.lat(),
-            lng: e.latLng.lng()
-          },
-          map: map
-        });
-      });
+      // map.addListener('click', function(e) {
+      //   firebase.push({
+      //     lat: e.latLng.lat(),
+      //     lng: e.latLng.lng()
+      //   });
+      //   var marker = new google.maps.Marker({
+      //     position: {
+      //       lat: e.latLng.lat(),
+      //       lng: e.latLng.lng()
+      //     },
+      //     map: map
+      //   });
+      // });
 
       firebase.database().ref('spot/').on("value", function(snapshot) {
         var newPosition = snapshot.val();
@@ -236,7 +236,8 @@
             document.getElementById(childSnapshot.id).addEventListener("click", function(e) {
               e.preventDefault();
               firebase.database().ref('spot/' + childSnapshot.id).update({
-                'user': user = firebase.auth().currentUser.uid
+                'user': firebase.auth().currentUser.uid,
+                'timestamp': firebase.database.ServerValue.TIMESTAMP
               }).then(function() {
                 console.log('checked in');
               });
