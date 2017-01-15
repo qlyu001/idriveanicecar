@@ -6,223 +6,276 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style media="screen">
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  #map {
-    height: 100%;
-  }
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 100%;
+    }
   </style>
   <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
-  <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBey3EgW1-fJDA6V2y4MVkDF4P4czBDZ6Q&libraries=visualization&callback=initMap">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBey3EgW1-fJDA6V2y4MVkDF4P4czBDZ6Q&libraries=visualization&callback=initMap">
   </script>
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div id="map"></div>
 
   <script type="text/javascript">
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDwstWxZUTUqyhEyvDSSgvgyCmc91mv4us",
+      authDomain: "parking-8581d.firebaseapp.com",
+      databaseURL: "https://parking-8581d.firebaseio.com",
+      storageBucket: "parking-8581d.appspot.com",
+      messagingSenderId: "370002006662"
+    };
+    firebase.initializeApp(config);
 
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyDwstWxZUTUqyhEyvDSSgvgyCmc91mv4us",
-    authDomain: "parking-8581d.firebaseapp.com",
-    databaseURL: "https://parking-8581d.firebaseio.com",
-    storageBucket: "parking-8581d.appspot.com",
-    messagingSenderId: "370002006662"
-  };
-  firebase.initializeApp(config);
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {
-        lat: 33.6404952,
-        lng: -117.8442962
-      },
-      zoom: 15,
-      styles: [
-                {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-                {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-                {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-                {
-                  featureType: 'administrative.locality',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'poi',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'poi.park',
-                  elementType: 'geometry',
-                  stylers: [{color: '#263c3f'}]
-                },
-                {
-                  featureType: 'poi.park',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#6b9a76'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'geometry',
-                  stylers: [{color: '#38414e'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'geometry.stroke',
-                  stylers: [{color: '#212a37'}]
-                },
-                {
-                  featureType: 'road',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#9ca5b3'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'geometry',
-                  stylers: [{color: '#746855'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'geometry.stroke',
-                  stylers: [{color: '#1f2835'}]
-                },
-                {
-                  featureType: 'road.highway',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#f3d19c'}]
-                },
-                {
-                  featureType: 'transit',
-                  elementType: 'geometry',
-                  stylers: [{color: '#2f3948'}]
-                },
-                {
-                  featureType: 'transit.station',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#d59563'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'geometry',
-                  stylers: [{color: '#17263c'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'labels.text.fill',
-                  stylers: [{color: '#515c6d'}]
-                },
-                {
-                  featureType: 'water',
-                  elementType: 'labels.text.stroke',
-                  stylers: [{color: '#17263c'}]
-                }
-      ],
-      disableDoubleClickZoom: false
-    });
-    map.addListener('click', function(e) {
-      firebase.push({
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng()
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: 33.6404952,
+          lng: -117.8442962
+        },
+        zoom: 15,
+        styles: [{
+            elementType: 'geometry',
+            stylers: [{
+              color: '#242f3e'
+            }]
+          },
+          {
+            elementType: 'labels.text.stroke',
+            stylers: [{
+              color: '#242f3e'
+            }]
+          },
+          {
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#746855'
+            }]
+          },
+          {
+            featureType: 'administrative.locality',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#d59563'
+            }]
+          },
+          {
+            featureType: 'poi',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#d59563'
+            }]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'geometry',
+            stylers: [{
+              color: '#263c3f'
+            }]
+          },
+          {
+            featureType: 'poi.park',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#6b9a76'
+            }]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry',
+            stylers: [{
+              color: '#38414e'
+            }]
+          },
+          {
+            featureType: 'road',
+            elementType: 'geometry.stroke',
+            stylers: [{
+              color: '#212a37'
+            }]
+          },
+          {
+            featureType: 'road',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#9ca5b3'
+            }]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry',
+            stylers: [{
+              color: '#746855'
+            }]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'geometry.stroke',
+            stylers: [{
+              color: '#1f2835'
+            }]
+          },
+          {
+            featureType: 'road.highway',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#f3d19c'
+            }]
+          },
+          {
+            featureType: 'transit',
+            elementType: 'geometry',
+            stylers: [{
+              color: '#2f3948'
+            }]
+          },
+          {
+            featureType: 'transit.station',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#d59563'
+            }]
+          },
+          {
+            featureType: 'water',
+            elementType: 'geometry',
+            stylers: [{
+              color: '#17263c'
+            }]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.fill',
+            stylers: [{
+              color: '#515c6d'
+            }]
+          },
+          {
+            featureType: 'water',
+            elementType: 'labels.text.stroke',
+            stylers: [{
+              color: '#17263c'
+            }]
+          }
+        ],
+        disableDoubleClickZoom: false
       });
-      var marker = new google.maps.Marker({
-        position: {
+      map.addListener('click', function(e) {
+        firebase.push({
           lat: e.latLng.lat(),
           lng: e.latLng.lng()
-        },
-        map: map
-      });
-    });
-
-    firebase.database().ref('spot/').on("value", function(snapshot) {
-      var newPosition = snapshot.val();
-      console.log(newPosition);
-
-      var image = {
-        url: 'http://www.iconsplace.com/icons/preview/orange/garage-256.png',
-        scaledSize : new google.maps.Size(32, 32),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(16, 16)
-      };
-
-      newPosition.forEach(function(childSnapshot) {
-        var latLng = new google.maps.LatLng(
-          childSnapshot.lat,
-          childSnapshot.lng
-        );
-
-        /* Information Window */
-
-        var starRating = '<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>';
-
-        var informationString =
-          '<div id="content" style="max-width:300px; background-color:white;">'+
-          '<div id="siteNotice">'+
-          '</div>'+
-          '<div id="bodyContent">'+
-          '<img src="' + childSnapshot.images + '" style="width:100%;" alt="garage image">' +
-          '<h3>Price: $' + childSnapshot.price + '/hr' + '</h3>' +
-          '<div> Rating : ' + starRating + '</div><div>Status : Available </div>' +
-          '</div>'+
-          '</div>'
-          ;
-
-        var infowindow = new google.maps.InfoWindow({
-          content : informationString
         });
-
         var marker = new google.maps.Marker({
-          position : latLng,
-          map : map,
-          icon : image
+          position: {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+          },
+          map: map
         });
-
-        // User's Location
-
-        if (navigator.geolocation) {
-          var infwind = new google.maps.InfoWindow();
-
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var userLocation = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(userLocation);
-            infoWindow.setContent('Location found.');
-            map.setCenter(userLocation);
-          }, function() {
-            handleLocationError(true, infwind, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infwind, map.getCenter());
-        }
-
-        function handleLocationError(browserHasGeolocation, infwind, pos) {
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-        }
-
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
-
       });
-    });
-  }
 
+      firebase.database().ref('spot/').on("value", function(snapshot) {
+        var newPosition = snapshot.val();
+        console.log(newPosition);
+
+        var image = {
+          url: 'http://www.iconsplace.com/icons/preview/orange/garage-256.png',
+          scaledSize: new google.maps.Size(32, 32),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(16, 16)
+        };
+
+        newPosition.forEach(function(childSnapshot) {
+          var latLng = new google.maps.LatLng(
+            childSnapshot.lat,
+            childSnapshot.lng
+          );
+
+          /* Information Window */
+
+          var starRating = '<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>';
+          var buttonStyle = 'display:block;text-decoration:none;border-radius: 4px; text-align: center;box-sizing: border-box;width: 100%; background-color: #20bef0; border: none; padding: 10px; color: white; font-size: 13px; margin-top: 10px;';
+
+          var informationString =
+            '<div id="content" style="max-width:300px; background-color:white;">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<div id="bodyContent">' +
+            '<img src="' + childSnapshot.images + '" style="width:100%;" alt="garage image">' +
+            '<h3>Price: $' + childSnapshot.price + '/hr' + '</h3>' +
+            '<div> Rating : ' + starRating + '</div><div>Status : Available </div>' +
+            '<button href="#" id="' + childSnapshot.id + '" style="'+ buttonStyle +'">Check In</button>' +
+            '</div>' +
+            '</div>';
+
+          var infowindow = new google.maps.InfoWindow({
+            content: informationString
+          });
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            icon: image
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+          google.maps.event.addListener(infowindow, 'domready', function() {
+            document.getElementById(childSnapshot.id).addEventListener("click", function(e) {
+              e.preventDefault();
+              firebase.database().ref('spot/' + childSnapshot.id).update({
+                'user': user = firebase.auth().currentUser.uid
+              }).then(function() {
+                console.log('checked in');
+              });
+            });
+          });
+
+        });
+        //
+        // // User's Location
+        //
+        // if (navigator.geolocation) {
+        //   var infwind = new google.maps.InfoWindow();
+        //
+        //   navigator.geolocation.getCurrentPosition(function(position) {
+        //     var userLocation = {
+        //       lat: position.coords.latitude,
+        //       lng: position.coords.longitude
+        //     };
+        //
+        //     infoWindow.setPosition(userLocation);
+        //     infoWindow.setContent('Location found.');
+        //     map.setCenter(userLocation);
+        //   }, function() {
+        //     handleLocationError(true, infwind, map.getCenter());
+        //   });
+        // } else {
+        //   // Browser doesn't support Geolocation
+        //   handleLocationError(false, infwind, map.getCenter());
+        // }
+        //
+        // function handleLocationError(browserHasGeolocation, infwind, pos) {
+        //   infoWindow.setPosition(pos);
+        //   infoWindow.setContent(browserHasGeolocation ?
+        //     'Error: The Geolocation service failed.' :
+        //     'Error: Your browser doesn\'t support geolocation.');
+        // }
+      });
+    }
   </script>
 </body>
+
 </html>
