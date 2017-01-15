@@ -216,8 +216,14 @@
 
           var buttonStyle = 'display:block;text-decoration:none;border-radius: 4px; text-align: center;box-sizing: border-box;width: 100%; background-color: #20bef0; border: none; padding: 10px; color: white; font-size: 13px; margin-top: 10px;';
 
-          var status = "<span style='color:grey'>Not Available</span>";
-          if (childSnapshot.taken) status = "Available";
+          var status = "Available";
+          var buttontxt = "Check In";
+          if (childSnapshot.taken)
+          {
+            status = "<span style='color:grey'>Not Available</span>";
+            buttontxt = "Checked in";
+            buttonStyle = 'display:block;text-decoration:none;border-radius: 4px; text-align: center;box-sizing: border-box;width: 100%; background-color: grey; border: none; padding: 10px; color: white; font-size: 13px; margin-top: 10px;';
+          }
 
           var informationString =
             '<div id="content" style="max-width:200px; background-color:white;">' +
@@ -227,7 +233,7 @@
             '<img src="' + childSnapshot.images + '" style="width:100%;" alt="garage image">' +
             '<h3>Price: $' + childSnapshot.price + '/day' + '</h3>' +
             '<div> Rating : ' + starRating + '</div><div>Status: ' + status + '</div>' +
-            '<button href="#" id="' + childSnapshot.id + '" style="'+ buttonStyle +'">Check In</button>' +
+            '<button href="#" id="' + childSnapshot.id + '" style="'+ buttonStyle +'">' + buttontxt + '</button>' +
             '</div>' +
             '</div>';
 
