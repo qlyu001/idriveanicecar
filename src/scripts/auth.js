@@ -15,7 +15,7 @@ $('.loginForm').on('submit', function(e) {
         console.log("logged in!");
         console.log(user.email);
 
-        window.location.href = '/dash.html';
+        window.location.href = 'rentget.html';
 
       })
       .catch(function(error) {
