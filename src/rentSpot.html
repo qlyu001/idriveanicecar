@@ -5,28 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <style media="screen">
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
+  <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBey3EgW1-fJDA6V2y4MVkDF4P4czBDZ6Q&libraries=visualization&callback=initMap">
+  </script>
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 </head>
 <body>
+  <div id="map"></div>
 
-    <div id="map"></div>
-    <script src="assets/js/map.js" charset="utf-8"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZF0Fr7icVeD8UojoLFxG2fQkXRWkDcEM&libraries=visualization&callback=initMap" async defer></script>
-    <!-- <script src="js/bundle.js" charset="utf-8"></script> -->
+  <script type="text/javascript">
 
-      <style>
-        /* Always set the map height explicitly to define the size of the div
-         * element that contains the map. */
-        #map {
-          height: 100%;
-        }
-        /* Optional: Makes the sample page fill the window. */
-        html, body {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-      </style>
-    </body>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDwstWxZUTUqyhEyvDSSgvgyCmc91mv4us",
+    authDomain: "parking-8581d.firebaseapp.com",
+    databaseURL: "https://parking-8581d.firebaseio.com",
+    storageBucket: "parking-8581d.appspot.com",
+    messagingSenderId: "370002006662"
+  };
+  firebase.initializeApp(config);
+
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: 39.6017,
+        lng: -110.7970
+      },
+      zoom: 14,
+      styles: [{
+        featureType: 'poi',
+        stylers: [{
+            visibility: 'off'
+          }] // Turn off points of interest.
+      }, {
+        featureType: 'transit.station',
+        stylers: [{
+            visibility: 'off'
+          }] // Turn off bus stations, train stations, etc.
+      }],
+      disableDoubleClickZoom: false
+    });
+    map.addListener('click', function(e) {
+      firebase.push({
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng()
+      });
+      var marker = new google.maps.Marker({
+        position: {
+          lat: e.latLng.lat(),
+          lng: e.latLng.lng()
+        },
+        map: map
+      });
+    });
+
+    firebase.database().ref('spot/').on("value", function(snapshot) {
+      var newPosition = snapshot.val();
+      console.log(newPosition);
+
+      newPosition.forEach(function(childSnapshot) {
+        var latLng = new google.maps.LatLng(
+          childSnapshot.lat,
+          childSnapshot.lng
+        );
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map
+        });
+      });
+    });
+  }
+
+  </script>
+</body>
 </html>
