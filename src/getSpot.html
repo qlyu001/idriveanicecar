@@ -43,6 +43,7 @@
     function initMap() {
       var map = new google.maps.Map(document.getElementById('map'), {
         center: {
+          // this is UCI
           lat: 33.6404952,
           lng: -117.8442962
         },
@@ -209,14 +210,18 @@
           var starRating = '<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>';
           var buttonStyle = 'display:block;text-decoration:none;border-radius: 4px; text-align: center;box-sizing: border-box;width: 100%; background-color: #20bef0; border: none; padding: 10px; color: white; font-size: 13px; margin-top: 10px;';
 
+          var status;
+          if (childSnapshot.taken) status = "Not Available"
+          else status = "Available";
+
           var informationString =
-            '<div id="content" style="max-width:300px; background-color:white;">' +
+            '<div id="content" style="max-width:200px; background-color:white;">' +
             '<div id="siteNotice">' +
             '</div>' +
             '<div id="bodyContent">' +
             '<img src="' + childSnapshot.images + '" style="width:100%;" alt="garage image">' +
-            '<h3>Price: $' + childSnapshot.price + '/hr' + '</h3>' +
-            '<div> Rating : ' + starRating + '</div><div>Status : Available </div>' +
+            '<h3>Price: $' + childSnapshot.price + '/day' + '</h3>' +
+            '<div> Rating : ' + starRating + '</div><div>Status: ' + status + '</div>' +
             '<button href="#" id="' + childSnapshot.id + '" style="'+ buttonStyle +'">Check In</button>' +
             '</div>' +
             '</div>';
