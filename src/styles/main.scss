@@ -1,12 +1,6 @@
 /* Bordered form */
 form {
     border: 3px solid #f1f1f1;
-<<<<<<< HEAD
-  background-color: aliceblue;
-
-=======
-    background-color: aliceblue;
->>>>>>> e9d61810825c9113467a3e86586a5c7b75bdff6b
 }
 
 /* Full-width inputs */
@@ -19,25 +13,19 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> e9d61810825c9113467a3e86586a5c7b75bdff6b
 body {
-  background-image: url("http://previews.123rf.com/images/elenarolau/elenarolau1509/elenarolau150900038/45737104-Winter-watercolor-abstract-background-with-falling-snow-splash-texture-Christmas-New-Year-hand-drawn-Stock-Photo.jpg");
-  background-position: center;
+  background-image: url("http://cdn3.volusion.com/qtvkk.payvn/v/vspfiles/photos/CDKK-2.jpg?1460465111");
+  background-position: center center;
   background-repeat:no-repeat;
   background-size: cover;
-  border-top: thick double #000000;
-  border-bottom: thick double #000000;
-<<<<<<< HEAD
-
-
-}
-=======
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  //border-top: thick double #000000;
+  //border-bottom: thick double #000000;
 }
 
->>>>>>> e9d61810825c9113467a3e86586a5c7b75bdff6b
+
+
 /* Set a style for all buttons */
 button {
     background-color: #4CAF50;
@@ -53,7 +41,7 @@ button {
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
-    background-color: #f44336;
+    background-color: blueviolet;
 }
 
 /* Center the avatar image inside this container */
@@ -99,5 +87,47 @@ select {
     }
     .cancelbtn {
         width: 100%;
+        background-color: blueviolet;
     }
+}
+
+
+
+
+/* Style the list */
+ul.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
