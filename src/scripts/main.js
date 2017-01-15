@@ -12,5 +12,3 @@ require("./auth");
 require("./yourSpot");
 
 require("./register");
-
-require("./google-maps");
