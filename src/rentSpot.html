@@ -47,7 +47,6 @@
         lng: -110.7970
       },
       zoom: 14,
-      
       styles: [
                 {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
                 {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
@@ -160,11 +159,22 @@
           childSnapshot.lat,
           childSnapshot.lng
         );
+
+        /* Information Window */
+        var infowindow = new google.maps.InfoWindow({
+          content: "This to be filled up!"
+        });
+
         var marker = new google.maps.Marker({
           position : latLng,
           map : map,
           icon : image
         });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+        
       });
     });
   }
