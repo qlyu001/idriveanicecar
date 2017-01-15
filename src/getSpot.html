@@ -211,7 +211,7 @@
 
           var status = "Available";
           var buttontxt = "Check In";
-          
+
           var image = {
             url: 'https://firebasestorage.googleapis.com/v0/b/parking-8581d.appspot.com/o/available.png?alt=media&token=37883dd5-46ad-4dbe-a27a-e2b8d226a3a1',
             scaledSize: new google.maps.Size(32, 32),
@@ -250,6 +250,7 @@
           });
 
           marker.addListener('click', function() {
+
             infowindow.open(map, marker);
           });
 
@@ -258,9 +259,11 @@
               e.preventDefault();
               firebase.database().ref('spot/' + childSnapshot.id).update({
                 'user': firebase.auth().currentUser.uid,
-                'timestamp': firebase.database.ServerValue.TIMESTAMP
+                'timestamp': firebase.database.ServerValue.TIMESTAMP,
+                'taken' : true
               }).then(function() {
                 console.log('checked in');
+                infowindow.close();
               });
             });
           });
