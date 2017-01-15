@@ -1,6 +1,8 @@
 /* Bordered form */
 form {
     border: 3px solid #f1f1f1;
+  background-color: aliceblue;
+
 }
 
 /* Full-width inputs */
@@ -13,6 +15,17 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
+
+body {
+  background-image: url("http://previews.123rf.com/images/elenarolau/elenarolau1509/elenarolau150900038/45737104-Winter-watercolor-abstract-background-with-falling-snow-splash-texture-Christmas-New-Year-hand-drawn-Stock-Photo.jpg");
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: cover;
+  border-top: thick double #000000;
+  border-bottom: thick double #000000;
+
+
+}
 /* Set a style for all buttons */
 button {
     background-color: #4CAF50;
