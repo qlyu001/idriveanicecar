@@ -1,8 +1,7 @@
 /* Bordered form */
 form {
     border: 3px solid #f1f1f1;
-  background-color: aliceblue;
-
+    background-color: aliceblue;
 }
 
 /* Full-width inputs */
@@ -15,17 +14,19 @@ input[type=text], input[type=password] {
     box-sizing: border-box;
 }
 
-
 body {
-  background-image: url("http://previews.123rf.com/images/elenarolau/elenarolau1509/elenarolau150900038/45737104-Winter-watercolor-abstract-background-with-falling-snow-splash-texture-Christmas-New-Year-hand-drawn-Stock-Photo.jpg");
-  background-position: center;
+  background-image: url("http://cdn3.volusion.com/qtvkk.payvn/v/vspfiles/photos/CDKK-2.jpg?1460465111");
+  background-position: center center;
   background-repeat:no-repeat;
   background-size: cover;
-  border-top: thick double #000000;
-  border-bottom: thick double #000000;
-
-
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  //border-top: thick double #000000;
+  //border-bottom: thick double #000000;
 }
+
+
+
 /* Set a style for all buttons */
 button {
     background-color: #4CAF50;
@@ -41,7 +42,7 @@ button {
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
-    background-color: #f44336;
+    background-color: blueviolet;
 }
 
 /* Center the avatar image inside this container */
@@ -87,5 +88,6 @@ select {
     }
     .cancelbtn {
         width: 100%;
+        background-color: blueviolet;
     }
 }
