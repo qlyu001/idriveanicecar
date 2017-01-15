@@ -192,12 +192,6 @@
         var newPosition = snapshot.val();
         console.log(newPosition);
 
-        var image = {
-          url: 'http://www.iconsplace.com/icons/preview/orange/garage-256.png',
-          scaledSize: new google.maps.Size(32, 32),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(16, 16)
-        };
 
         newPosition.forEach(function(childSnapshot) {
           var latLng = new google.maps.LatLng(
@@ -209,8 +203,7 @@
 
           var i;
           var starRating = '';
-          for (i=1; i <= childSnapshot.rate; i++)
-          {
+          for (i=1; i <= childSnapshot.rate; i++) {
             starRating += '<span style="color:gold">★</span>';
           }
 
@@ -218,8 +211,17 @@
 
           var status = "Available";
           var buttontxt = "Check In";
+          
+          var image = {
+            url: 'https://firebasestorage.googleapis.com/v0/b/parking-8581d.appspot.com/o/available.png?alt=media&token=37883dd5-46ad-4dbe-a27a-e2b8d226a3a1',
+            scaledSize: new google.maps.Size(32, 32),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(16, 16)
+          };
+
           if (childSnapshot.taken)
           {
+            image.url = 'http://www.iconsplace.com/icons/preview/orange/garage-256.png';
             status = "<span style='color:grey'>Not Available</span>";
             buttontxt = "Checked in";
             buttonStyle = 'display:block;text-decoration:none;border-radius: 4px; text-align: center;box-sizing: border-box;width: 100%; background-color: grey; border: none; padding: 10px; color: white; font-size: 13px; margin-top: 10px;';
